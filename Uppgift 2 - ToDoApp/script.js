@@ -40,6 +40,7 @@ const createTodoElement = todo => {
   card.appendChild(title);
   card.appendChild(button);
   
+
   button.addEventListener('click', () => removeTodo(todo.id, card))
   return card;
 }
@@ -49,11 +50,19 @@ const createTodoElement = todo => {
 function removeTodo(id, todo) {
   todos = todos.filter(todo => todo.id !== id)
   listTodos()
+
   // DELETE from db
-  //if()
-  // todo.remove()
+  
+  if('btn-secondary' === true) {
+    fetch('https://jsonplaceholder.typicode.com/posts/1', {
+     method: 'DELETE',
+    });
+    }
+  todo.remove()
   console.log(todos)
 }
+
+
 
 
 const createNewTodo = title => {
@@ -76,6 +85,8 @@ const createNewTodo = title => {
   })
 }
 
+// console.log(title);
+
 
 form.addEventListener('submit', e => {
   e.preventDefault();
@@ -84,6 +95,9 @@ form.addEventListener('submit', e => {
     createNewTodo(input.value);
     input.value = '';
     input.focus()
-
+    
+  } else {
+    alert ('You must type something');
   }
+  
 })
