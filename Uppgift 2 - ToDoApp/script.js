@@ -54,13 +54,17 @@ function removeTodo(id, todo) {
   // DELETE from db
   
   if('btn-secondary' === true) {
-    fetch('https://jsonplaceholder.typicode.com/posts/1', {
+     fetch('https://jsonplaceholder.typicode.com/posts/1', {
      method: 'DELETE',
     });
     }
   todo.remove()
   console.log(todos)
+  console.log( fetch('https://jsonplaceholder.typicode.com/posts/1', {
+    method: 'DELETE',
+   }));
 }
+
 
 
 
