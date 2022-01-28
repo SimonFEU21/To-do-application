@@ -4,6 +4,9 @@ const output = document.querySelector('#output');
 
 let todos = [];
 
+
+// Fetch list
+
 const fetchTodos = async () => {
     
   const res = await fetch('https://jsonplaceholder.typicode.com/todos')
@@ -15,13 +18,14 @@ const fetchTodos = async () => {
 
 fetchTodos();
 
-
 const listTodos = () => {
   output.innerHTML = ''
   todos.forEach(todo => {
     output.appendChild(createTodoElement(todo))
   })
 }
+
+// Create elements
 
 const createTodoElement = todo => {
 
@@ -45,13 +49,13 @@ const createTodoElement = todo => {
   return card;
 }
 
-// remove from DataBase
+// remove todos
 
 function removeTodo(id, todo) {
   todos = todos.filter(todo => todo.id !== id)
   listTodos()
 
-  // DELETE from db
+  // DELETE from Database
   
   if('btn-secondary' === true) {
      fetch('https://jsonplaceholder.typicode.com/posts/1', {
@@ -67,6 +71,7 @@ function removeTodo(id, todo) {
 
 
 
+// Create new toDos
 
 
 const createNewTodo = title => {
@@ -85,12 +90,11 @@ const createNewTodo = title => {
     // console.log(data)
     todos.unshift(data);
     listTodos()
-    // output.prepend(createTodoElement(data))
   })
 }
 
-// console.log(title);
 
+// prevent from reloading site when submitting and error alert if nothing is typed in
 
 form.addEventListener('submit', e => {
   e.preventDefault();
@@ -101,7 +105,7 @@ form.addEventListener('submit', e => {
     input.focus()
     
   } else {
-    alert ('You must type something');
+    alert ('You must add something!');
   }
   
 })
